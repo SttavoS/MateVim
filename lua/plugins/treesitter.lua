@@ -7,6 +7,7 @@ return {
 
       configs.setup({
         ensure_installed = {
+          "bash",
           "lua",
           "javascript",
           "typescript",
@@ -23,6 +24,8 @@ return {
           "c_sharp",
           "fsharp",
           "php",
+          "java",
+          "kotlin",
           "sql",
           "json",
           "yaml",
