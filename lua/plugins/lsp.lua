@@ -14,6 +14,7 @@ return {
         "eslint-lsp",
         "js-debug-adapter",
         "elixir-ls",
+        "csharp_ls",
         "kotlin_language_server"
       },
     },
@@ -65,6 +66,9 @@ return {
       lspconfig.elixirls.setup({
         cmd = { "/home/sttavos/.local/share/nvim/mason/packages/elixir-ls/language_server.sh" },
         capabilities = capabilities,
+      })
+      lspconfig.csharp_ls.setup({
+        capabilities = capabilities
       })
       lspconfig.pylsp.setup({
         capabilities = capabilities,

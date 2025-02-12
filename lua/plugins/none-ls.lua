@@ -12,6 +12,7 @@ return {
           -- null_ls.builtins.diagnostics.eslint,
           null_ls.builtins.formatting.prettier,
           null_ls.builtins.formatting.ktlint,
+          null_ls.builtins.formatting.csharpier
         },
         on_attach = function(client, bufnr)
           if client.supports_method("textDocument/formatting") then
