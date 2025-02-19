@@ -14,8 +14,6 @@ return {
         "eslint-lsp",
         "js-debug-adapter",
         "elixir-ls",
-        "csharp_ls",
-        "kotlin_language_server"
       },
     },
   },
@@ -67,14 +65,8 @@ return {
         cmd = { "/home/sttavos/.local/share/nvim/mason/packages/elixir-ls/language_server.sh" },
         capabilities = capabilities,
       })
-      lspconfig.csharp_ls.setup({
-        capabilities = capabilities
-      })
       lspconfig.pylsp.setup({
         capabilities = capabilities,
-      })
-      lspconfig.kotlin_language_server.setup({
-        capabilities = capabilities
       })
 
       vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
