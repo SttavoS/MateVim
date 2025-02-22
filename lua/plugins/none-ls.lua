@@ -8,11 +8,10 @@ return {
       null_ls.setup({
         sources = {
           null_ls.builtins.formatting.stylua,
-          -- null_ls.builtins.formatting.biome,
           -- null_ls.builtins.diagnostics.eslint,
           null_ls.builtins.formatting.prettier,
-          null_ls.builtins.formatting.ktlint,
-          null_ls.builtins.formatting.csharpier
+          null_ls.builtins.formatting.phpcsfixer,
+          -- null_ls.builtins.diagnostics.phpcs,
         },
         on_attach = function(client, bufnr)
           if client.supports_method("textDocument/formatting") then

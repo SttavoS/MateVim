@@ -13,6 +13,7 @@ return {
         "prettier",
         "eslint-lsp",
         "js-debug-adapter",
+        "intelephense",
         "elixir-ls",
       },
     },
@@ -59,6 +60,9 @@ return {
         capabilities = capabilities,
       })
       lspconfig.volar.setup({
+        capabilities = capabilities,
+      })
+      lspconfig.intelephense.setup({
         capabilities = capabilities,
       })
       lspconfig.elixirls.setup({
