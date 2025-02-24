@@ -19,9 +19,6 @@ return {
 		opts = {},
 	},
 	{
-		"tpope/vim-commentary",
-	},
-	{
 		"lukas-reineke/indent-blankline.nvim",
 		main = "ibl",
 		opts = {
