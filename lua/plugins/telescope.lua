@@ -2,6 +2,7 @@ return {
 	{
 		"nvim-telescope/telescope.nvim",
 		tag = "0.1.8",
+		enabled = false,
 		dependencies = { "nvim-lua/plenary.nvim" },
 		config = function()
 			local builtin = require("telescope.builtin")
@@ -24,6 +25,7 @@ return {
 	},
 	{
 		"nvim-telescope/telescope-ui-select.nvim",
+    enabled = false,
 		config = function()
 			-- This is your opts table
 			require("telescope").setup({
