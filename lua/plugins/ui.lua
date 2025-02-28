@@ -1,10 +1,17 @@
 return {
 	{
 		"akinsho/bufferline.nvim",
-		-- keys = {
-		--   { "<Tab>", "<cmd>BufferLineCyclePrev<cr>", desc = "Prev Buffer" },
-		--   { "<S-Tab>", "<cmd>BufferLineCycleNext<cr>", desc = "Next Buffer" },
-		-- },
+    event = 'VeryLazy',
+		keys = {
+			{ "<leader>bp", "<Cmd>BufferLineTogglePin<CR>", desc = "Toggle Pin" },
+			{ "<leader>bP", "<Cmd>BufferLineGroupClose ungrouped<CR>", desc = "Delete Non-Pinned Buffers" },
+			{ "<leader>br", "<Cmd>BufferLineCloseRight<CR>", desc = "Delete Buffers to the Right" },
+			{ "<leader>bl", "<Cmd>BufferLineCloseLeft<CR>", desc = "Delete Buffers to the Left" },
+			{ "[b", "<cmd>BufferLineCyclePrev<cr>", desc = "Prev Buffer" },
+			{ "]b", "<cmd>BufferLineCycleNext<cr>", desc = "Next Buffer" },
+			{ "[B", "<cmd>BufferLineMovePrev<cr>", desc = "Move buffer prev" },
+			{ "]B", "<cmd>BufferLineMoveNext<cr>", desc = "Move buffer next" },
+		},
 		opts = {
 			options = {
         -- stylua: ignore
@@ -20,12 +27,6 @@ return {
 				},
 			},
 		},
-		config = function(_, opts)
-			require("bufferline").setup(opts)
-
-			vim.keymap.set("n", "<leader>b]", "<cmd>BufferLineCycleNext<CR>", { desc = "Go to next buffer" })
-			vim.keymap.set("n", "<leader>b[", "<cmd>BufferLineCyclePrev<CR>", { desc = "Go to previous buffer" })
-		end,
 	},
 	{
 		"folke/noice.nvim",
