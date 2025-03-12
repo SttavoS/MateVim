@@ -11,6 +11,7 @@ return {
 					["@tag.attribute"] = { fg = "#fabd2f", bg = "NONE", bold = false, italic = false },
 					["@tag.delimiter"] = { fg = "#83a598", bg = "NONE", bold = false, italic = false },
 					["@string.javascript"] = { fg = "#b8bb26", bg = "NONE", bold = false, italic = false },
+          ["@lsp.type.class.vue"] = { fg = "#d3839b", bg = "NONE", bold = false, italic = true },
           -- snacks.dashboard
           SnacksDashboardDesc = { fg = '#ebdbb2' },
 					-- snacks.picker
