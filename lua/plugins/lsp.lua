@@ -69,9 +69,6 @@ return {
         cmd = { "/home/sttavos/.local/share/nvim/mason/packages/elixir-ls/language_server.sh" },
         capabilities = capabilities,
       })
-      lspconfig.pylsp.setup({
-        capabilities = capabilities,
-      })
 
       vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
       vim.keymap.set("n", "gd", vim.lsp.buf.definition, {})
