@@ -1,5 +1,44 @@
 return {
   {
+		"nvim-treesitter/nvim-treesitter",
+		build = ":TSUpdate",
+		main = "nvim-treesitter",
+		opts = {
+			ensure_installed = {
+				"bash",
+				"lua",
+				"javascript",
+				"typescript",
+				"tsx",
+				"html",
+				"css",
+				"scss",
+				"vue",
+				"rust",
+				"elixir",
+				"heex",
+				"eex",
+				"python",
+				"c_sharp",
+				"fsharp",
+				"php",
+				"java",
+				"kotlin",
+				"sql",
+				"json",
+				"yaml",
+				"xml",
+				"dockerfile",
+				"markdown",
+				"markdown_inline",
+				"norg",
+				"kdl",
+			},
+			highlight = { enable = true },
+			indent = { enable = true },
+		},
+	},
+  {
     "williamboman/mason.nvim",
     config = function()
       require("mason").setup()
@@ -28,24 +67,11 @@ return {
     "neovim/nvim-lspconfig",
     config = function()
       local mason_registry = require("mason-registry")
-      local vue_language_server_path = mason_registry.get_package("vue-language-server")
       local capabilities = require("cmp_nvim_lsp").default_capabilities()
-      local lspconfig = require("lspconfig")
 
-      lspconfig.lua_ls.setup({
-        capabilities = capabilities,
-      })
-      lspconfig.ts_ls.setup({
-        capabilities = capabilities,
-        init_options = {
-          plugins = {
-            {
-              name = "@vue/typescript-plugin",
-              location = vue_language_server_path,
-              languages = { "vue" },
-            },
-          },
-        },
+      vim.lsp.config("*", { capabilities = capabilities })
+
+      local ts_ls_opts = {
         filetypes = {
           "typescript",
           "javascript",
@@ -53,25 +79,25 @@ return {
           "typescriptreact",
           "vue",
         },
-      })
-      lspconfig.cssls.setup({
-        capabilities = capabilities,
-      })
-      lspconfig.volar.setup({
-        capabilities = capabilities,
-      })
-      lspconfig.phpactor.setup({
-        capabilities = capabilities,
-      })
-      lspconfig.elixirls.setup({
+      }
+      if mason_registry.is_installed("vue-language-server") then
+        local vue_path = vim.fn.stdpath("data")
+          .. "/mason/packages/vue-language-server/node_modules/@vue/typescript-plugin"
+        ts_ls_opts.init_options = {
+          plugins = { { name = "@vue/typescript-plugin", location = vue_path, languages = { "vue" } } },
+        }
+      end
+      vim.lsp.config("ts_ls", ts_ls_opts)
+
+      vim.lsp.config("elixirls", {
         cmd = { "/home/sttavos/.local/share/nvim/mason/packages/elixir-ls/language_server.sh" },
-        capabilities = capabilities,
       })
+
+      vim.lsp.enable({ "lua_ls", "ts_ls", "cssls", "vue_ls", "phpactor", "elixirls" })
 
       vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
       vim.keymap.set("n", "gd", vim.lsp.buf.definition, {})
       vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, {})
-      -- vim.keymap.set({ "n", "<leader>rn", vim.lsp.buf.rename, { desc = "Rename" } })
     end,
   },
 }
