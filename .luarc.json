@@ -2,5 +2,6 @@
     "diagnostics.globals": [
         "vim",
         "neovim"
-    ]
+    ],
+    "completion.autoRequire": false
 }
