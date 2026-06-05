@@ -1,0 +1,2 @@
+-- PHP extras
+return {}
