@@ -72,7 +72,13 @@ return {
 		"nvim-lualine/lualine.nvim",
 		dependencies = { "nvim-tree/nvim-web-devicons" },
 		opts = {
-			theme = "gruvbox",
+			options = {
+				theme = "gruvbox",
+				globalstatus = true,
+				disabled_filetypes = {
+					statusline = { "snacks_dashboard" },
+				},
+			},
 		},
 	},
 	{
