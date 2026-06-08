@@ -1,2 +1,8 @@
--- PHP extras
-return {}
+return {
+  {
+    "williamboman/mason.nvim",
+    opts = {
+      ensure_installed = { "php-debug-adapter" },
+    },
+  },
+}
