@@ -32,6 +32,8 @@ return {
 			animate = { enabled = true },
 			bigfile = { enabled = true },
 			bufdelete = { enabled = true },
+			dim = { enabled = true },
+			image = { enabled = true },
 			indent = {
 				priority = 1,
 				enabled = true,
@@ -44,8 +46,11 @@ return {
 			},
 			quickfile = { enabled = true },
 			rename = { enabled = true },
+			scope = { enabled = true },
+			scroll = { enabled = true },
 			statuscolumn = { enabled = true },
 			words = { enabled = true },
+			zen = { enabled = true },
 		},
 		keys = {
 			-- Buffer
@@ -95,11 +100,19 @@ return {
 				desc = "Notification History",
 			},
 			{
-				"<leader>dn",
+				"<leader>un",
 				function()
 					Snacks.notifier.hide()
 				end,
 				desc = "Dismiss All Notifications",
+			},
+			-- Zen
+			{
+				"<leader>uz",
+				function()
+					Snacks.zen()
+				end,
+				desc = "Toggle Zen Mode",
 			},
 			-- Picker
 			{
