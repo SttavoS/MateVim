@@ -57,32 +57,24 @@ return {
 		"nvim-treesitter/nvim-treesitter-textobjects",
 		event = { "BufReadPost", "BufNewFile" },
 		dependencies = { "nvim-treesitter/nvim-treesitter" },
-		config = function()
-			require("nvim-treesitter.configs").setup({
-				textobjects = {
-					move = {
-						enable = true,
-						goto_next_start = {
-							["]f"] = "@function.outer",
-							["]c"] = "@class.outer",
-							["]a"] = "@parameter.inner",
-						},
-						goto_next_end = {
-							["]F"] = "@function.outer",
-							["]C"] = "@class.outer",
-						},
-						goto_previous_start = {
-							["[f"] = "@function.outer",
-							["[c"] = "@class.outer",
-							["[a"] = "@parameter.inner",
-						},
-						goto_previous_end = {
-							["[F"] = "@function.outer",
-							["[C"] = "@class.outer",
-						},
-					},
-				},
-			})
+		keys = function()
+			local move = function(fn, capture)
+				return function()
+					require("nvim-treesitter-textobjects.move")[fn](capture, "textobjects")
+				end
+			end
+			return {
+				{ "]f", move("goto_next_start", "@function.outer"), mode = { "n", "x", "o" }, desc = "Next function start" },
+				{ "]c", move("goto_next_start", "@class.outer"), mode = { "n", "x", "o" }, desc = "Next class start" },
+				{ "]a", move("goto_next_start", "@parameter.inner"), mode = { "n", "x", "o" }, desc = "Next parameter" },
+				{ "]F", move("goto_next_end", "@function.outer"), mode = { "n", "x", "o" }, desc = "Next function end" },
+				{ "]C", move("goto_next_end", "@class.outer"), mode = { "n", "x", "o" }, desc = "Next class end" },
+				{ "[f", move("goto_previous_start", "@function.outer"), mode = { "n", "x", "o" }, desc = "Prev function start" },
+				{ "[c", move("goto_previous_start", "@class.outer"), mode = { "n", "x", "o" }, desc = "Prev class start" },
+				{ "[a", move("goto_previous_start", "@parameter.inner"), mode = { "n", "x", "o" }, desc = "Prev parameter" },
+				{ "[F", move("goto_previous_end", "@function.outer"), mode = { "n", "x", "o" }, desc = "Prev function end" },
+				{ "[C", move("goto_previous_end", "@class.outer"), mode = { "n", "x", "o" }, desc = "Prev class end" },
+			}
 		end,
 	},
 	{
