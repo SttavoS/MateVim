@@ -12,6 +12,12 @@ keymap.set("n", "<C-j>", ":wincmd j<CR>")
 keymap.set("n", "<C-h>", ":wincmd h<CR>")
 keymap.set("n", "<C-l>", ":wincmd l<CR>")
 
+-- Horizontal scroll (MX Master 3S thumb wheel)
+keymap.set({ "n", "v" }, "<ScrollWheelLeft>", "zh", { desc = "Scroll left" })
+keymap.set({ "n", "v" }, "<ScrollWheelRight>", "zl", { desc = "Scroll right" })
+keymap.set("i", "<ScrollWheelLeft>", "<C-o>zh", { desc = "Scroll left" })
+keymap.set("i", "<ScrollWheelRight>", "<C-o>zl", { desc = "Scroll right" })
+
 -- UI Toggles
 keymap.set("n", "<leader>uw", function()
   vim.opt.wrap = not vim.opt.wrap:get()
