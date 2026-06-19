@@ -6,6 +6,9 @@ return {
 		end,
 	},
 	{
+		"sindrets/diffview.nvim",
+	},
+	{
 		"lukas-reineke/virt-column.nvim",
 		opts = {
 			char = "┆",
