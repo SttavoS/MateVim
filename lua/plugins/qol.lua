@@ -44,15 +44,4 @@ return {
       { "]y", "<Plug>(YankyCycleBackward)", desc = "Cycle Backward Through Yank History" },
     },
   },
-  {
-    "sindrets/diffview.nvim",
-    cmd = { "DiffviewOpen", "DiffviewClose", "DiffviewToggleFiles", "DiffviewFileHistory" },
-    keys = {
-      { "<leader>gd", "<cmd>DiffviewOpen<cr>", desc = "Diffview Open" },
-      { "<leader>gD", "<cmd>DiffviewClose<cr>", desc = "Diffview Close" },
-      { "<leader>gh", "<cmd>DiffviewFileHistory %<cr>", desc = "File History (current)" },
-      { "<leader>gH", "<cmd>DiffviewFileHistory<cr>", desc = "File History (branch)" },
-    },
-    opts = {},
-  },
 }

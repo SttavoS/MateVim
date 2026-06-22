@@ -7,6 +7,50 @@ return {
 	},
 	{
 		"sindrets/diffview.nvim",
+		dependencies = { "nvim-lua/plenary.nvim" },
+		cmd = {
+			"DiffviewOpen",
+			"DiffviewClose",
+			"DiffviewToggleFiles",
+			"DiffviewFocusFiles",
+			"DiffviewFileHistory",
+		},
+		keys = {
+			{ "<leader>gd", "<cmd>DiffviewOpen<cr>", desc = "Diff view (index)" },
+			{ "<leader>gh", "<cmd>DiffviewFileHistory %<cr>", desc = "File history" },
+			{ "<leader>gH", "<cmd>DiffviewFileHistory<cr>", desc = "Branch history" },
+			{ "<leader>gx", "<cmd>DiffviewClose<cr>", desc = "Fechar diffview" },
+			{ "<leader>gm", "<cmd>DiffviewOpen HEAD...ORIG_HEAD<cr>", desc = "Ver merge diff" },
+		},
+		opts = function()
+			local actions = require("diffview.actions")
+			return {
+				enhanced_diff_hl = true,
+				view = {
+					merge_tool = {
+						layout = "diff3_mixed",
+						disable_diagnostics = true,
+					},
+				},
+				keymaps = {
+					view = {
+						{ "n", "<leader>co", actions.conflict_choose("ours"), { desc = "Accept ours (local)" } },
+						{ "n", "<leader>ct", actions.conflict_choose("theirs"), { desc = "Aceitar theirs (remoto)" } },
+						{ "n", "<leader>cb", actions.conflict_choose("all"), { desc = "Accept both" } },
+						{ "n", "<leader>cn", actions.conflict_choose("none"), { desc = "Discard both" } },
+						{ "n", "]x", actions.next_conflict, { desc = "Next conflict" } },
+						{ "n", "[x", actions.prev_conflict, { desc = "Previous conflict" } },
+					},
+					file_panel = {
+						{ "n", "j", actions.next_entry, { desc = "Next file" } },
+						{ "n", "k", actions.prev_entry, { desc = "Previous file" } },
+						{ "n", "<cr>", actions.select_entry, { desc = "Open file" } },
+						{ "n", "s", actions.toggle_stage_entry, { desc = "Stage/unstage" } },
+						{ "n", "R", actions.refresh_files, { desc = "Refresh files" } },
+					},
+				},
+			}
+		end,
 	},
 	{
 		"lukas-reineke/virt-column.nvim",
