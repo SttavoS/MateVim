@@ -1,5 +1,7 @@
 # MateVim
 
+![Logo](.github/assets/logo.png)
+
 Configuração pessoal de Neovim baseada em [lazy.nvim](https://github.com/folke/lazy.nvim),
 desenhada para desenvolvimento full-stack com PHP, JavaScript/TypeScript/Vue,
 Go e SQL — com paridade de funcionalidades com PhpStorm e LazyVim.
@@ -39,28 +41,28 @@ via `opts_extend`.
 
 ## Plugins por arquivo
 
-| Arquivo | Conteúdo |
-|---|---|
-| `lsp.lua` | mason, mason-lspconfig, nvim-lspconfig. `LspAttach` registra os keymaps de LSP, `vim.diagnostic.config` define UI dos diagnósticos. |
-| `completions.lua` | blink.cmp + LuaSnip + friendly-snippets, source `dadbod` em SQL. |
-| `formatting.lua` | conform.nvim com format-on-save + `:FormatDisable[!]` / `:FormatEnable`. |
-| `linting.lua` | nvim-lint (eslint_d, phpstan, sqlfluff, golangcilint). |
-| `treesitter.lua` | parsers de ~30 linguagens. |
-| `coding.lua` | mini.pairs, mini.surround, mini.ai, treesitter-textobjects, inc-rename, nvim-ts-autotag, ts-comments, lazydev. |
-| `editor.lua` | gitsigns, virt-column (80), grug-far, flash, trouble. |
-| `ui.lua` | bufferline, noice, lualine, which-key, mini.icons. |
-| `snacks.lua` | snacks.nvim (dashboard, picker, explorer, lazygit, notifier, indent, zen, scroll, scope, dim, image, words, rename). |
-| `colorscheme.lua` | gruvbox dark com overrides de Treesitter. |
-| `dap.lua` | nvim-dap + dap-ui + virtual-text + vscode-php-debug (Xdebug 9003). |
-| `database.lua` | vim-dadbod + dadbod-ui + dadbod-completion. |
-| `rest.lua` | kulala.nvim (HTTP client). |
-| `testing.lua` | neotest + neotest-phpunit + neotest-go. |
-| `navigation.lua` | aerial, harpoon, todo-comments, undotree. |
-| `qol.lua` | render-markdown, nvim-colorizer, yanky, diffview. |
-| `utils.lua` | vim-be-good, vim-wakatime. |
-| `lang/go.lua` | gopls + gofumpt/goimports + golangci-lint. |
-| `lang/php.lua` | php-debug-adapter via mason. |
-| `lang/sql.lua` | sqls + sql_formatter. |
+| Arquivo           | Conteúdo                                                                                                                            |
+| ----------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
+| `lsp.lua`         | mason, mason-lspconfig, nvim-lspconfig. `LspAttach` registra os keymaps de LSP, `vim.diagnostic.config` define UI dos diagnósticos. |
+| `completions.lua` | blink.cmp + LuaSnip + friendly-snippets, source `dadbod` em SQL.                                                                    |
+| `formatting.lua`  | conform.nvim com format-on-save + `:FormatDisable[!]` / `:FormatEnable`.                                                            |
+| `linting.lua`     | nvim-lint (eslint_d, phpstan, sqlfluff, golangcilint).                                                                              |
+| `treesitter.lua`  | parsers de ~30 linguagens.                                                                                                          |
+| `coding.lua`      | mini.pairs, mini.surround, mini.ai, treesitter-textobjects, inc-rename, nvim-ts-autotag, ts-comments, lazydev.                      |
+| `editor.lua`      | gitsigns, virt-column (80), grug-far, flash, trouble.                                                                               |
+| `ui.lua`          | bufferline, noice, lualine, which-key, mini.icons.                                                                                  |
+| `snacks.lua`      | snacks.nvim (dashboard, picker, explorer, lazygit, notifier, indent, zen, scroll, scope, dim, image, words, rename).                |
+| `colorscheme.lua` | gruvbox dark com overrides de Treesitter.                                                                                           |
+| `dap.lua`         | nvim-dap + dap-ui + virtual-text + vscode-php-debug (Xdebug 9003).                                                                  |
+| `database.lua`    | vim-dadbod + dadbod-ui + dadbod-completion.                                                                                         |
+| `rest.lua`        | kulala.nvim (HTTP client).                                                                                                          |
+| `testing.lua`     | neotest + neotest-phpunit + neotest-go.                                                                                             |
+| `navigation.lua`  | aerial, harpoon, todo-comments, undotree.                                                                                           |
+| `qol.lua`         | render-markdown, nvim-colorizer, yanky, diffview.                                                                                   |
+| `utils.lua`       | vim-be-good, vim-wakatime.                                                                                                          |
+| `lang/go.lua`     | gopls + gofumpt/goimports + golangci-lint.                                                                                          |
+| `lang/php.lua`    | php-debug-adapter via mason.                                                                                                        |
+| `lang/sql.lua`    | sqls + sql_formatter.                                                                                                               |
 
 ## Requisitos
 
@@ -92,17 +94,17 @@ para validar.
 
 ## Comandos úteis
 
-| Comando | Para quê |
-|---|---|
-| `:Lazy sync` | Atualiza, instala e remove plugins conforme `lazy-lock.json`. |
-| `:Mason` | UI para LSPs/formatters/linters/DAP adapters. |
-| `:checkhealth` | Validação de saúde do Neovim + plugins. |
-| `:FormatDisable[!]` / `:FormatEnable` | Liga/desliga format-on-save (global ou buffer). |
-| `:ConformInfo` | Diagnostica o estado do conform. |
-| `:LspInfo` | Estado dos servidores LSP no buffer. |
-| `:Trouble diagnostics toggle` | Janela de diagnósticos. |
-| `:DBUIToggle` | Abrir/fechar a UI do dadbod. |
-| `:IncRename <novo>` | Rename com preview. |
+| Comando                               | Para quê                                                      |
+| ------------------------------------- | ------------------------------------------------------------- |
+| `:Lazy sync`                          | Atualiza, instala e remove plugins conforme `lazy-lock.json`. |
+| `:Mason`                              | UI para LSPs/formatters/linters/DAP adapters.                 |
+| `:checkhealth`                        | Validação de saúde do Neovim + plugins.                       |
+| `:FormatDisable[!]` / `:FormatEnable` | Liga/desliga format-on-save (global ou buffer).               |
+| `:ConformInfo`                        | Diagnostica o estado do conform.                              |
+| `:LspInfo`                            | Estado dos servidores LSP no buffer.                          |
+| `:Trouble diagnostics toggle`         | Janela de diagnósticos.                                       |
+| `:DBUIToggle`                         | Abrir/fechar a UI do dadbod.                                  |
+| `:IncRename <novo>`                   | Rename com preview.                                           |
 
 ## Keybinds
 
