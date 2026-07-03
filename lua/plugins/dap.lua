@@ -4,16 +4,18 @@ return {
     dependencies = {
       { "rcarriga/nvim-dap-ui", dependencies = { "nvim-neotest/nvim-nio" } },
       "theHamsta/nvim-dap-virtual-text",
+      "leoluz/nvim-dap-go",
       {
         "jay-babu/mason-nvim-dap.nvim",
         dependencies = "williamboman/mason.nvim",
         opts = {
-          ensure_installed = { "php" },
+          ensure_installed = { "php", "delve" },
           automatic_installation = true,
           handlers = {},
         },
       },
     },
+    ft = { "php", "go" },
     keys = {
       { "<leader>db", function() require("dap").toggle_breakpoint() end, desc = "Toggle Breakpoint" },
       { "<leader>dB", function() require("dap").set_breakpoint(vim.fn.input("Condition: ")) end, desc = "Conditional Breakpoint" },
@@ -33,6 +35,7 @@ return {
 
       dapui.setup()
       require("nvim-dap-virtual-text").setup({})
+      require("dap-go").setup()
 
       dap.listeners.before.attach.dapui_config = function() dapui.open() end
       dap.listeners.before.launch.dapui_config = function() dapui.open() end
@@ -40,11 +43,11 @@ return {
       dap.listeners.before.event_exited.dapui_config = function() dapui.close() end
 
       local sign = vim.fn.sign_define
-      sign("DapBreakpoint", { text = "", texthl = "DiagnosticError", linehl = "", numhl = "" })
-      sign("DapBreakpointCondition", { text = "", texthl = "DiagnosticWarn", linehl = "", numhl = "" })
-      sign("DapLogPoint", { text = "", texthl = "DiagnosticInfo", linehl = "", numhl = "" })
-      sign("DapStopped", { text = "", texthl = "DiagnosticOk", linehl = "Visual", numhl = "" })
-      sign("DapBreakpointRejected", { text = "", texthl = "DiagnosticError", linehl = "", numhl = "" })
+      sign("DapBreakpoint", { text = "", texthl = "DiagnosticError", linehl = "", numhl = "" })
+      sign("DapBreakpointCondition", { text = "", texthl = "DiagnosticWarn", linehl = "", numhl = "" })
+      sign("DapLogPoint", { text = "", texthl = "DiagnosticInfo", linehl = "", numhl = "" })
+      sign("DapStopped", { text = "", texthl = "DiagnosticOk", linehl = "Visual", numhl = "" })
+      sign("DapBreakpointRejected", { text = "", texthl = "DiagnosticError", linehl = "", numhl = "" })
 
       local php_debug_path = vim.fn.stdpath("data") .. "/mason/packages/php-debug-adapter/extension/out/phpDebug.js"
       dap.adapters.php = {
