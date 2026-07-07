@@ -127,7 +127,7 @@ return {
 						return ""
 					end, { buffer = ev.buf, desc = "Rename", expr = true })
 					map({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, "Code Action")
-					map("n", "<leader>co", function()
+					map("n", "<leader>ci", function()
 						vim.lsp.buf.code_action({
 							context = { only = { "source.organizeImports" }, diagnostics = {} },
 							apply = true,
