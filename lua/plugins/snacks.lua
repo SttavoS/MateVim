@@ -1,5 +1,5 @@
 return {
-  {
+	{
 		"folke/snacks.nvim",
 		priority = 1000,
 		lazy = false,
@@ -43,6 +43,33 @@ return {
 			notifier = { enabled = true },
 			picker = {
 				enabled = true,
+				sources = {
+					files = {
+						hidden = true,
+						ignored = true,
+						exclude = {
+							".git",
+							".idea",
+							".vscode",
+							"node_modules",
+							"dist",
+							"build",
+							".next",
+							"vendor",
+							"*.lock",
+						},
+					},
+					explorer = {
+						exclude = {
+							".git",
+							"node_modules",
+							"dist",
+							"build",
+							".next",
+							"vendor",
+						},
+					},
+				},
 			},
 			quickfile = { enabled = true },
 			rename = { enabled = true },
