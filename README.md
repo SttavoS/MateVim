@@ -1,84 +1,82 @@
-# MateVim
-
 ![Logo](.github/assets/logo.png)
 
-[![standard-readme compliant](https://img.shields.io/badge/readme%20style-standard-brightgreen.svg)](https://github.com/RichardLitt/standard-readme)
+![GitHub Tag](https://img.shields.io/github/v/tag/SttavoS/MateVim)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
-> Configuração pessoal de Neovim baseada em [lazy.nvim](https://github.com/folke/lazy.nvim).
+> Neovim personal config based on [LazyVim](https://github.com/LazyVim/LazyVim).
 
-Desenhada para desenvolvimento full-stack com PHP, JavaScript/TypeScript/Vue, Go e SQL.
+Designed for full-stack development with PHP, Vue.js, Go and SQL.
 
 ## Índice
 
 - [Background](#background)
-- [Instalação](#instalação)
-- [Uso](#uso)
-- [Contribuindo](#contribuindo)
-- [Licença](#licença)
+- [Requirements](#requirements)
+- [Instalation](#instalation)
+- [Usage](#usage)
+- [Contributing](#contributing)
+- [Licence](#licence)
 
 ## Background
 
-MateVim é uma config modular onde cada arquivo em `lua/plugins/` retorna um spec
-do lazy.nvim, e `lua/plugins/lang/` estende tabelas `opts` compartilhadas por
-linguagem (LSP, formatters, linters, DAP). Destaques:
+MateVim is a modular config where each file in `lua/plugins/` returns a lazy.nvim spec, and `lua/plugins/lang/` extends shared `opts` tables per language (LSP, formatters, linters, DAP). Highlights:
+
+![Dashboard](.github/assets/dashboard.png)
 
 - **LSP** via `mason` + `nvim-lspconfig` (PHP, TS/JS/Vue, CSS, Lua, Go, SQL).
-- **Completion** com [blink.cmp](https://github.com/Saghen/blink.cmp) + LuaSnip.
-- **Formatação on-save** com `conform.nvim` e **linting** com `nvim-lint`.
-- **Debug** com `nvim-dap` e **testes** com `neotest`.
-- **Database UI** (`vim-dadbod-ui`) e **HTTP client** (`kulala.nvim`).
-- **UI** com `snacks.nvim`, `noice`, `bufferline`, `lualine` e `which-key`.
-- Colorscheme: `gruvbox`
+- **Completion** with [blink.cmp](https://github.com/Saghen/blink.cmp) + LuaSnip.
+- **Format on-save** with `conform.nvim` and **linting** with `nvim-lint`.
+- **Debug** with `nvim-dap` and **tests** with `neotest`.
+- **Database UI** (`vim-dadbod-ui`) and **HTTP client** (`kulala.nvim`).
+- **UI** with `snacks.nvim`, `noice`, `bufferline`, `lualine`, and `which-key`.
+- **Colorscheme**: `gruvbox`
 
-## Instalação
+## Requirements
 
-Requer **Neovim 0.10+**, além de `git`, `make`, `gcc/clang`, **Node.js**,
-**ripgrep** e uma **Nerd Font** no terminal. Para debug de PHP, **PHP CLI +
-Xdebug**.
+- Neovim 0.10+
+- Git
+- A [NerfFont](https://www.nerdfonts.com/) (needed to display some icons)
+- **tree-sitter-cli** and a **C** complier (`gcc/clang`)
+- [lazygit](https://github.com/jesseduffield/lazygit)
+- [ripgrep](https://github.com/BurntSushi/ripgrep) and [fd](https://github.com/sharkdp/fd) for searching
+- a terminal that support true color, I recommend [ghostty](https://ghostty.org/) for this
+
+## Instalation
+
+Make a backup of your existing configs
 
 ```sh
-# Backup de qualquer config existente
 mv ~/.config/nvim ~/.config/nvim.bak 2>/dev/null
+```
 
-# Clone e abra — o lazy.nvim faz bootstrap automaticamente
-git clone <url-do-repo> ~/.config/nvim
+Clone the repo, but I strongly recommend that you fork it.
+
+```sh
+git clone https://github.com/SttavoS/MateVim ~/.config/nvim
+```
+
+Remove the `.git` folder, not necessary if you make the fork.
+
+```sh
+rm -rf ~/.config/nvim/.git
+```
+
+Run neovim for the first time to download dependencies.
+
+```sh
 nvim
 ```
 
-Na primeira execução o lazy.nvim instala os plugins e o mason baixa LSPs,
-formatters, linters e adapters. Ao final, rode `:checkhealth` para validar.
+You can run `:checkhealth` to verify that everything is working.
 
-## Uso
+## Usage
 
-Leader é `<Space>`. Atalhos principais:
+- Use `VimBeGood` to learn the vim motions.
+- Complete keybind reference in [`docs/keybinds.md`](docs/keybinds.md).
 
-- `<leader><space>` / `<leader>ff` — find files &nbsp; `<leader>/` — grep
-- `<leader>e` — explorer &nbsp; `<leader>gg` — lazygit
-- `<leader>cf` — format &nbsp; `<leader>ca` — code action &nbsp; `<leader>cr` — rename
-- `<leader>db` / `<leader>dc` — breakpoint / debug &nbsp; `<leader>D` — DBUI
-- `<leader>tt` — rodar testes &nbsp; `<leader>?` — keymaps locais
+## Contributing
 
-Referência completa em [`docs/keybinds.md`](docs/keybinds.md).
+Personal configs, but PRs are appreciated.
 
-Comandos úteis:
-
-| Comando                               | Para quê                                        |
-| ------------------------------------- | ----------------------------------------------- |
-| `:Lazy sync`                          | Instala/atualiza/remove plugins.                |
-| `:Mason`                              | UI de LSPs/formatters/linters/DAP.              |
-| `:checkhealth`                        | Validação de saúde do Neovim + plugins.         |
-| `:FormatDisable[!]` / `:FormatEnable` | Liga/desliga format-on-save (global ou buffer). |
-
-Para adicionar uma linguagem, crie `lua/plugins/lang/<lang>.lua` retornando um
-spec que estenda `mason.ensure_installed`, `nvim-lspconfig.servers`,
-`conform.formatters_by_ft` e `nvim-lint.linters_by_ft` via `opts_extend`.
-
-## Contribuindo
-
-Config pessoal, mas PRs e issues são bem-vindos. Ao editar a documentação,
-mantenha o estilo [standard-readme](https://github.com/RichardLitt/standard-readme).
-
-## Licença
+## License
 
 [MIT](LICENSE) © Gustavo Schneider
