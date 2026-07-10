@@ -139,4 +139,29 @@ return {
 			},
 		},
 	},
+	{
+		"LintaoAmons/bookmarks.nvim",
+		dependencies = {
+			{ "kkharji/sqlite.lua" },
+			{ "folke/snacks.nvim" },
+		},
+		config = function()
+			require("bookmarks").setup({
+				signs = {
+					mark = {
+						icon = "󰃁",
+						color = "#83a598", -- gruvbox blue
+						line_bg = "none", -- no line highlight, gutter icon only
+					},
+				},
+			})
+		end,
+		keys = {
+			{ "<leader>ma", "<cmd>BookmarksMark<cr>", desc = "Add/toggle bookmark" },
+			{ "<leader>mm", "<cmd>BookmarksGoto<cr>", desc = "Go to bookmark" },
+			{ "<leader>ml", "<cmd>BookmarksLists<cr>", desc = "Pick bookmark list" },
+			{ "<leader>mn", "<cmd>BookmarksNewList<cr>", desc = "New bookmark list" },
+			{ "<leader>mt", "<cmd>BookmarksTree<cr>", desc = "Bookmark tree view" },
+		},
+	},
 }
