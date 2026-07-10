@@ -19,6 +19,70 @@ return {
 		end,
 	},
 	{
+		"echasnovski/mini.surround",
+		event = "VeryLazy",
+		opts = {
+			mappings = {
+				add = "sa",
+				delete = "sd",
+				find = "sf",
+				find_left = "sF",
+				highlight = "sh",
+				replace = "sr",
+				update_n_lines = "sn",
+			},
+		},
+	},
+	{
+		"echasnovski/mini.ai",
+		event = "VeryLazy",
+		dependencies = { "nvim-treesitter/nvim-treesitter-textobjects" },
+		opts = function()
+			local ai = require("mini.ai")
+			return {
+				n_lines = 500,
+				custom_textobjects = {
+					o = ai.gen_spec.treesitter({
+						a = { "@block.outer", "@conditional.outer", "@loop.outer" },
+						i = { "@block.inner", "@conditional.inner", "@loop.inner" },
+					}),
+					f = ai.gen_spec.treesitter({ a = "@function.outer", i = "@function.inner" }),
+					c = ai.gen_spec.treesitter({ a = "@class.outer", i = "@class.inner" }),
+					t = { "<([%p%w]-)%f[^<%w][^<>]->.-</%1>", "^<.->().*()</[^/]->$" },
+				},
+			}
+		end,
+	},
+	{
+		"nvim-treesitter/nvim-treesitter-textobjects",
+		event = { "BufReadPost", "BufNewFile" },
+		dependencies = { "nvim-treesitter/nvim-treesitter" },
+		keys = function()
+			local move = function(fn, capture)
+				return function()
+					require("nvim-treesitter-textobjects.move")[fn](capture, "textobjects")
+				end
+			end
+			return {
+				{ "]f", move("goto_next_start", "@function.outer"), mode = { "n", "x", "o" }, desc = "Next function start" },
+				{ "]c", move("goto_next_start", "@class.outer"), mode = { "n", "x", "o" }, desc = "Next class start" },
+				{ "]a", move("goto_next_start", "@parameter.inner"), mode = { "n", "x", "o" }, desc = "Next parameter" },
+				{ "]F", move("goto_next_end", "@function.outer"), mode = { "n", "x", "o" }, desc = "Next function end" },
+				{ "]C", move("goto_next_end", "@class.outer"), mode = { "n", "x", "o" }, desc = "Next class end" },
+				{ "[f", move("goto_previous_start", "@function.outer"), mode = { "n", "x", "o" }, desc = "Prev function start" },
+				{ "[c", move("goto_previous_start", "@class.outer"), mode = { "n", "x", "o" }, desc = "Prev class start" },
+				{ "[a", move("goto_previous_start", "@parameter.inner"), mode = { "n", "x", "o" }, desc = "Prev parameter" },
+				{ "[F", move("goto_previous_end", "@function.outer"), mode = { "n", "x", "o" }, desc = "Prev function end" },
+				{ "[C", move("goto_previous_end", "@class.outer"), mode = { "n", "x", "o" }, desc = "Prev class end" },
+			}
+		end,
+	},
+	{
+		"smjonas/inc-rename.nvim",
+		cmd = "IncRename",
+		opts = {},
+	},
+	{
 		"windwp/nvim-ts-autotag",
 		event = { "BufReadPost", "BufWritePost", "BufNewFile" },
 		opts = {},

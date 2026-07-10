@@ -1,5 +1,5 @@
 return {
-  {
+	{
 		"folke/snacks.nvim",
 		priority = 1000,
 		lazy = false,
@@ -32,6 +32,8 @@ return {
 			animate = { enabled = true },
 			bigfile = { enabled = true },
 			bufdelete = { enabled = true },
+			dim = { enabled = true },
+			image = { enabled = true },
 			indent = {
 				priority = 1,
 				enabled = true,
@@ -41,11 +43,41 @@ return {
 			notifier = { enabled = true },
 			picker = {
 				enabled = true,
+				sources = {
+					files = {
+						hidden = true,
+						ignored = true,
+						exclude = {
+							".git",
+							".idea",
+							".vscode",
+							"node_modules",
+							"dist",
+							"build",
+							".next",
+							"vendor",
+							"*.lock",
+						},
+					},
+					explorer = {
+						exclude = {
+							".git",
+							"node_modules",
+							"dist",
+							"build",
+							".next",
+							"vendor",
+						},
+					},
+				},
 			},
 			quickfile = { enabled = true },
 			rename = { enabled = true },
+			scope = { enabled = true },
+			scroll = { enabled = true },
 			statuscolumn = { enabled = true },
 			words = { enabled = true },
+			zen = { enabled = true },
 		},
 		keys = {
 			-- Buffer
@@ -95,11 +127,19 @@ return {
 				desc = "Notification History",
 			},
 			{
-				"<leader>dn",
+				"<leader>un",
 				function()
 					Snacks.notifier.hide()
 				end,
 				desc = "Dismiss All Notifications",
+			},
+			-- Zen
+			{
+				"<leader>uz",
+				function()
+					Snacks.zen()
+				end,
+				desc = "Toggle Zen Mode",
 			},
 			-- Picker
 			{

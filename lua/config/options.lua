@@ -15,6 +15,8 @@ opt.shiftwidth = 2
 opt.cursorline = true
 opt.wrap = false
 opt.scrolloff = 8
+opt.sidescroll = 1
+opt.sidescrolloff = 8
 opt.mouse = "a"
 
 opt.termguicolors = true
